@@ -10,6 +10,7 @@ import {
 import { ClienteService } from './cliente.service';
 import { CreateClientesDto } from './dtos/create-clientes.dto';
 import { Cliente } from './cliente.entity';
+import { UpdateClienteDto } from './dtos/update-cliente.dto';
 
 @Controller('cliente')
 export class ClienteController {
@@ -42,7 +43,7 @@ export class ClienteController {
   @Put('/:id')
   async updateCliente(
     @Param('id') id_cliente: string,
-    @Body() body: CreateClientesDto,
+    @Body() body: UpdateClienteDto,
   ): Promise<Cliente> {
     const cliente = await this.clienteService.update(
       parseInt(id_cliente),

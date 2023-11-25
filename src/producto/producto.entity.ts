@@ -1,5 +1,12 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Admin } from '../admin/admin.entity';
+import { DetalleVenta } from '../detalle-venta/detalle-venta.entity';
 
 @Entity()
 export class Producto {
@@ -27,4 +34,7 @@ export class Producto {
     onDelete: 'CASCADE',
   })
   admin: Admin;
+
+  @OneToMany(() => DetalleVenta, (detalleVenta) => detalleVenta.producto)
+  detalles: DetalleVenta[];
 }

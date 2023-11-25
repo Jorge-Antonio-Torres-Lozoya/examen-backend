@@ -11,15 +11,15 @@ export class UpdateProductoDto {
 
   @IsString()
   @IsNotEmpty()
-  cantidad_unidades: string;
+  cantidad_unidades: number;
 
   @IsString()
   @IsNotEmpty()
-  precio_costo: string;
+  precio_costo: number;
 
   @IsString()
   @IsNotEmpty()
-  precio_venta: string;
+  precio_venta: number;
 
   @IsString()
   @IsNotEmpty()

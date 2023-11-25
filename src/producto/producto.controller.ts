@@ -10,6 +10,7 @@ import {
 import { ProductoService } from './producto.service';
 import { Producto } from './producto.entity';
 import { CreateProductosDto } from './dtos/create-productos.dto';
+import { UpdateProductoDto } from './dtos/update-producto.dto';
 
 @Controller('producto')
 export class ProductoController {
@@ -42,7 +43,7 @@ export class ProductoController {
   @Put('/:id')
   async updateProducto(
     @Param('id') id_producto: string,
-    @Body() body: CreateProductosDto,
+    @Body() body: UpdateProductoDto,
   ): Promise<Producto> {
     const producto = await this.productoService.update(
       parseInt(id_producto),

@@ -8,6 +8,8 @@ import { DBOptions } from '../db.datasourceoptions';
 import { APP_PIPE } from '@nestjs/core';
 import { ProductoModule } from './producto/producto.module';
 import { ClienteModule } from './cliente/cliente.module';
+import { VentaModule } from './venta/venta.module';
+import { DetalleVentaModule } from './detalle-venta/detalle-venta.module';
 
 @Module({
   imports: [
@@ -29,6 +31,8 @@ import { ClienteModule } from './cliente/cliente.module';
     AdminModule,
     ProductoModule,
     ClienteModule,
+    VentaModule,
+    DetalleVentaModule,
   ],
   controllers: [AppController],
   providers: [
