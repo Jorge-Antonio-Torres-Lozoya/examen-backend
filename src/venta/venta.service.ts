@@ -29,21 +29,6 @@ export class VentaService {
     return ventas;
   }
 
-  // async getById(id: number): Promise<Venta> {
-  //   const venta = await this.repoVenta.findOne({
-  //     where: { id_venta: id },
-  //     relations: {
-  //       admin: true,
-  //       cliente: true,
-  //       detalles: true,
-  //     },
-  //   });
-  //   if (!venta) {
-  //     throw new NotFoundException('No existe el venta');
-  //   }
-  //   return venta;
-  // }
-
   async getById(id: number): Promise<Venta> {
     const venta = await this.repoVenta
       .createQueryBuilder('venta')

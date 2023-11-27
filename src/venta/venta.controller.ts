@@ -47,4 +47,24 @@ export class VentaController {
   async deleteVenta(@Param('id') id_venta: string): Promise<Venta> {
     return this.ventaService.delete(parseInt(id_venta));
   }
+  // @Get('reporte')
+  // async obtenerReporte(
+  //   @Query('fechaInicio') fechaInicioString: string,
+  //   @Query('fechaFin') fechaFinString: string,
+  // ) {
+  //   console.log('Fecha Inicio String:', fechaInicioString);
+  //   console.log('Fecha Fin String:', fechaFinString);
+
+  //   const fechaInicio = new Date(fechaInicioString);
+  //   const fechaFin = new Date(fechaFinString);
+
+  //   console.log('Fecha Inicio:', fechaInicio);
+  //   console.log('Fecha Fin:', fechaFin);
+
+  //   if (isNaN(fechaInicio.getTime()) || isNaN(fechaFin.getTime())) {
+  //     throw new BadRequestException('Las fechas proporcionadas no son válidas');
+  //   }
+
+  //   return this.ventaService.generarReporte(fechaInicio, fechaFin);
+  // }
 }
