@@ -16,4 +16,8 @@ export class SignUpAdminDto {
   @IsString()
   @IsNotEmpty()
   nombre_tienda: string;
+
+  @IsString()
+  @IsNotEmpty()
+  logo_tienda: string;
 }

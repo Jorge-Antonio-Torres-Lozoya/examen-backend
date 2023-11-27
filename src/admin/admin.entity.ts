@@ -20,6 +20,9 @@ export class Admin {
   @Column()
   nombre_tienda: string;
 
+  @Column()
+  logo_tienda: string;
+
   @OneToMany(() => Producto, (productos) => productos.admin, {
     cascade: true,
     onDelete: 'SET NULL',

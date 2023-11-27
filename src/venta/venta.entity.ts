@@ -16,16 +16,14 @@ export class Venta {
   @Column()
   fecha_venta: Date;
 
-  @ManyToOne(() => Admin, (admin) => admin.ventas, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => Admin, (admin) => admin.ventas)
   admin: Admin;
 
-  @ManyToOne(() => Cliente, (cliente) => cliente.ventas, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => Cliente, (cliente) => cliente.ventas)
   cliente: Cliente;
 
-  @OneToMany(() => DetalleVenta, (detalleVenta) => detalleVenta.venta)
+  @OneToMany(() => DetalleVenta, (detalleVenta) => detalleVenta.venta, {
+    onDelete: 'CASCADE',
+  })
   detalles: DetalleVenta[];
 }

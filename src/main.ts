@@ -7,7 +7,11 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.use(helmet());
   app.enableCors({
-    origin: ['http://localhost:4200'],
+    origin: [
+      'http://localhost:4200',
+      'http://localhost:8100',
+      'http://localhost:8200',
+    ],
     credentials: true,
   });
   await app.listen(5000, () => {

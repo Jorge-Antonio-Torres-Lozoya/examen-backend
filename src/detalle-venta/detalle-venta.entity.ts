@@ -13,7 +13,9 @@ export class DetalleVenta {
   @Column()
   precio_unitario: number;
 
-  @ManyToOne(() => Venta, (venta) => venta.detalles)
+  @ManyToOne(() => Venta, (venta) => venta.detalles, {
+    onDelete: 'CASCADE',
+  })
   venta: Venta;
 
   @ManyToOne(() => Producto, (producto) => producto.detalles)

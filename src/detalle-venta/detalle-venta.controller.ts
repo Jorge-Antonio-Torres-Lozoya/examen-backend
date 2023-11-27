@@ -9,8 +9,9 @@ import {
 } from '@nestjs/common';
 import { DetalleVentaService } from './detalle-venta.service';
 import { DetalleVenta } from './detalle-venta.entity';
-import { CreateDetalleVentaDto } from './dtos/create-detale-venta.dto';
+
 import { UpdateDetalleVentaDto } from './dtos/update-detalle-venta.dto';
+import { CreateDetalleMultipleDto } from './dtos/create-detalle-multiple.dto';
 
 @Controller('detalle-venta')
 export class DetalleVentaController {
@@ -35,9 +36,12 @@ export class DetalleVentaController {
 
   @Post()
   async createDetalleVenta(
-    @Body() body: CreateDetalleVentaDto,
-  ): Promise<DetalleVenta> {
-    const detalleVenta = await this.detalleVentaService.create(body);
+    @Body() body: CreateDetalleMultipleDto,
+  ): Promise<DetalleVenta[]> {
+    const detalleVenta = await this.detalleVentaService.createMultiple(
+      body.id_venta,
+      body.detalles,
+    );
     return detalleVenta;
   }
 

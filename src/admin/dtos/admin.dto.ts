@@ -12,4 +12,7 @@ export class AdminDto {
 
   @Expose()
   nombre_tienda: string;
+
+  @Expose()
+  logo_tienda: string;
 }

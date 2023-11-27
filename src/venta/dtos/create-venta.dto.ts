@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import { IsDate, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class CreateVentaDto {
@@ -9,7 +10,8 @@ export class CreateVentaDto {
   @IsNotEmpty()
   admin_id: number;
 
-  @IsDate()
   @IsNotEmpty()
+  @IsDate()
+  @Type(() => Date)
   fecha_venta: Date;
 }

@@ -23,22 +23,41 @@ export class VentaService {
       relations: {
         admin: true,
         cliente: true,
+        detalles: true,
       },
     });
     return ventas;
   }
 
+  // async getById(id: number): Promise<Venta> {
+  //   const venta = await this.repoVenta.findOne({
+  //     where: { id_venta: id },
+  //     relations: {
+  //       admin: true,
+  //       cliente: true,
+  //       detalles: true,
+  //     },
+  //   });
+  //   if (!venta) {
+  //     throw new NotFoundException('No existe el venta');
+  //   }
+  //   return venta;
+  // }
+
   async getById(id: number): Promise<Venta> {
-    const venta = await this.repoVenta.findOne({
-      where: { id_venta: id },
-      relations: {
-        admin: true,
-        cliente: true,
-      },
-    });
+    const venta = await this.repoVenta
+      .createQueryBuilder('venta')
+      .leftJoinAndSelect('venta.detalles', 'detalleVenta')
+      .leftJoinAndSelect('detalleVenta.producto', 'producto')
+      .leftJoinAndSelect('venta.admin', 'admin') // Si necesitas cargar también la relación con admin
+      .leftJoinAndSelect('venta.cliente', 'cliente') // Si necesitas cargar también la relación con cliente
+      .where('venta.id_venta = :id', { id })
+      .getOne();
+
     if (!venta) {
-      throw new NotFoundException('No existe el venta');
+      throw new NotFoundException('Venta no encontrada.');
     }
+
     return venta;
   }
 
@@ -47,7 +66,7 @@ export class VentaService {
       where: { id_venta: id },
     });
     if (!venta) {
-      throw new NotFoundException('El venta no fue encontrado');
+      throw new NotFoundException('La venta no fue encontrado');
     }
     return this.repoVenta.remove(venta);
   }
@@ -68,6 +87,7 @@ export class VentaService {
     const venta = this.repoVenta.create({
       fecha_venta: createData.fecha_venta,
       cliente: cliente,
+      admin: admin,
     });
     await this.repoVenta.save(venta);
     const foundVenta = await this.repoVenta.findOne({

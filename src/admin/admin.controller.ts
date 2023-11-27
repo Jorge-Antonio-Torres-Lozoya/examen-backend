@@ -47,6 +47,7 @@ export class AdminController {
       body.correo_electronico,
       body.contrasena,
       body.nombre_tienda,
+      body.logo_tienda,
     );
     return admin;
   }

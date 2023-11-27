@@ -46,12 +46,14 @@ export class AdminService {
     correo_electronico: string,
     contrasena: string,
     nombre_tienda: string,
+    logo_tienda: string,
   ) {
     const createdAdmin = this.repo.create({
       nombre_usuario,
       correo_electronico,
       contrasena,
       nombre_tienda,
+      logo_tienda,
     });
     return this.repo.save(createdAdmin);
   }
@@ -68,6 +70,7 @@ export class AdminService {
     correo_electronico: string,
     contrasena: string,
     nombre_tienda: string,
+    logo_tienda: string,
   ) {
     const admins = await this.getByEmail(correo_electronico);
 
@@ -81,6 +84,7 @@ export class AdminService {
       correo_electronico,
       hash,
       nombre_tienda,
+      logo_tienda,
     );
     return admin;
   }
